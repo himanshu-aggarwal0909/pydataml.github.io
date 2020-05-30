@@ -1,0 +1,58 @@
+nav,main{
+  display: block;
+}
+
+body { padding-top: 54px; }
+
+.navbar {
+    background: #2C3448;
+}
+
+.navbar a {
+  padding: 2px;
+  color: #2C3448;
+  font-weight: bold;
+  font-family: 'jubliant';
+}
+
+.navbar-brand {
+  font-family: 'jubliant';
+  font-size: 24px;
+}
+
+.card {
+  color: #2C3448;
+}
+
+.jumbotron {
+  /* background-image: url("images/website-thumbnails/WebsiteHeader1.jpg"); */
+  padding:5rem 1rem;
+  margin-top: 5rem;
+  margin-bottom:2rem;
+  background-color:white;
+  font-family: 'jubilat';
+  font-size: 90px;
+  color: #4A587D;
+   -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+
+.jumbotron-heading h1 {
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.welcome-text {
+  font-size: 60px;
+}
+
+.panel-footer {
+  background: #2C3448;
+  color: white;
+}
+
+.panel-footer a {
+  color: white;
+}

@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+      <link rel="stylesheet" href="css/main.css">
+      <title>Speak via Data!</title>
+      <script type="text/javascript">
+         var TxtRotate = function(el, toRotate, period) {
+         this.toRotate = toRotate;
+         this.el = el;
+         this.loopNum = 0;
+         this.period = parseInt(period, 5) || 2000;
+         this.txt = '';
+         this.tick();
+         this.isDeleting = false;
+         };
+
+         TxtRotate.prototype.tick = function() {
+         var i = this.loopNum % this.toRotate.length;
+         var fullTxt = this.toRotate[i];
+
+         if (this.isDeleting) {
+         this.txt = fullTxt.substring(0, this.txt.length - 1);
+         } else {
+         this.txt = fullTxt.substring(0, this.txt.length + 1);
+         }
+
+         this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+         var that = this;
+         var delta = 300 - Math.random() * 100;
+
+         if (this.isDeleting) { delta /= 2; }
+
+         if (!this.isDeleting && this.txt === fullTxt) {
+         delta = this.period;
+         this.isDeleting = true;
+         } else if (this.isDeleting && this.txt === '') {
+         this.isDeleting = false;
+         this.loopNum++;
+         delta = 500;
+         }
+
+         setTimeout(function() {
+         that.tick();
+         }, delta);
+         };
+
+         window.onload = function() {
+         var elements = document.getElementsByClassName('txt-rotate');
+         for (var i=0; i<elements.length; i++) {
+         var toRotate = elements[i].getAttribute('data-rotate');
+         var period = elements[i].getAttribute('data-period');
+         if (toRotate) {
+         new TxtRotate(elements[i], JSON.parse(toRotate), period);
+         }
+         }
+         // INJECT CSS
+         var css = document.createElement("style");
+         css.type = "text/css";
+         css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
+         document.body.appendChild(css);
+         };
+      </script>
+   </head>
+   <body>
+      <header>
+         <nav class="navbar navbar-expand-lg navbar-white bg-white shadow-sm p-3 mb-5 bg-white rounded fixed-top">
+            <a class="navbar-brand" href="#">
+               <!-- <img src="images/logo1.png"> -->
+               PYDATAML
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+               <ul class="navbar-nav ml-auto">
+                  <li class="nav-item active">
+                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="#">Link</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="#">Contact Us</a>
+                  </li>
+               </ul>
+            </div>
+         </nav>
+      </header>
+      <main role="main">
+         <section class="jumbotron text-center jumbotron-fluid">
+            <div class="container">
+               <h1 class="jumbotron-heading">
+                  <h1 class="welcome-text">Learn
+                     <span
+                        class="txt-rotate welcome-text"
+                        data-period="2000"
+                        data-rotate='[ "Python.", "DataAnalytics.", "Machine Learning." ]'></span>
+                  </h1>
+               </h1>
+               <p class="lead">Tutorials and Blogs for Python, Data Analytics, Big Data Engineering and Machine Learning.</p>
+            </div>
+         </section>
+      </main>
+      <div class="container">
+         <div class="row">
+            <div class="col-md-4">
+               <div class="card mb-4 shadow-sm">
+                  <div class="card-image text-center">
+                     <img class="bd-placeholder-img card-img-top responsive-img p-5" src="images/website-thumbnails/pythonlogo.png" style="width:200px">
+                  </div>
+                  <div class="card-body">
+                     <p class="card-text"><span class="card-title"><strong>Python Fundamentals</strong></span>
+                        <br>Grab the python fundamentals and learn about it's various modules.
+                     </p>
+                     <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                           <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                        </div>
+                        <small class="text-muted">9 mins</small>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="card mb-4 shadow-sm">
+                  <div class="card-image text-center">
+                     <img class="bd-placeholder-img card-img-top responsive-img p-5" src="images/website-thumbnails/machine-learning.png" style="width:200px">
+                  </div>
+                  <div class="card-body">
+                     <p class="card-text"><span class="card-title"><strong>Machine Learning</strong></span>
+                        <br>Machine learning Algo's implemented from scratch in python with maths explained.
+                     </p>
+                     <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                           <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                        </div>
+                        <small class="text-muted">9 mins</small>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="card mb-4 shadow-sm">
+                  <div class="card-image text-center">
+                     <img class="bd-placeholder-img card-img-top responsive-img p-5" src="images/website-thumbnails/machine-learning.png" style="width:200px">
+                  </div>
+                  <div class="card-body">
+                     <p class="card-text"><span class="card-title"><strong>Machine Learning</strong></span>
+                        <br>Machine learning Algo's implemented from scratch in python with maths explained.
+                     </p>
+                     <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                           <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                        </div>
+                        <small class="text-muted">9 mins</small>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      </div>
+      </div>
+      <footer class="panel-footer font-small mt-4 darken-3">
+         <!-- Footer Elements -->
+         <!-- Copyright -->
+         <div class="footer-copyright text-center py-3">© 2020 Copyright:
+            <a href="https://pydataml.com/">pydataml.com</a>
+         </div>
+         <!-- Copyright -->
+      </footer>
+      <!-- <div class="container">
+         <img src="images/website-thumbnails/Backgroundthumbnail.png" class="img-fluid"/>
+         </div> -->
+      <!-- Image Slider -->
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+   </body>
+</html>
